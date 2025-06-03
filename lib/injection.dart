@@ -1,7 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-
-import 'counter/counter_cubit.dart'; // Importa tus cubits
+import 'package:inyection_bloc_cubit/injection.config.dart';
 
 final getIt = GetIt.instance;
 

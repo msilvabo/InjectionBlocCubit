@@ -12,7 +12,7 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import 'counter/counter_cubit.dart' as _i702;
+import 'cubit/counter_cubit.dart' as _i241;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 _i174.GetIt $initGetIt(
@@ -21,6 +21,6 @@ _i174.GetIt $initGetIt(
   _i526.EnvironmentFilter? environmentFilter,
 }) {
   final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
-  gh.factory<_i702.CounterCubit>(() => _i702.CounterCubit());
+  gh.factory<_i241.CounterCubit>(() => _i241.CounterCubit());
   return getIt;
 }

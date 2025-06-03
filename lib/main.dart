@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'app/injection.dart';
-import 'app/counter/counter_cubit.dart';
+import 'package:inyection_bloc_cubit/cubit/counter_cubit.dart';
+import 'injection.dart';
 
 void main() {
   configureDependencies(); // Configura get_it
-  runApp(const MyApp());
+  runApp(const BlocsProviders());
+}
+
+class BlocsProviders extends StatelessWidget {
+  const BlocsProviders({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => getIt<CounterCubit>(), lazy: false),
+      ],
+      child: const MyApp(),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -13,12 +27,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: BlocProvider(
-        create: (_) => getIt<CounterCubit>(), // Obtiene el cubit inyectado
-        child: const HomePage(),
-      ),
-    );
+    return MaterialApp(home: const HomePage());
   }
 }
 
@@ -27,11 +36,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<CounterCubit>();
+    // final cubit = context.read<CounterCubit>();
+    final cubit = getIt<CounterCubit>();
     return Scaffold(
       body: Center(
         child: BlocBuilder<CounterCubit, int>(
-          builder: (_, count) => Text('$count', style: const TextStyle(fontSize: 48)),
+          builder:
+              (_, count) =>
+                  Text('$count', style: const TextStyle(fontSize: 48)),
         ),
       ),
       floatingActionButton: Column(
