@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:inyection_bloc_cubit/injection.config.dart';
+import 'package:inyection_bloc_cubit/presentation/injection.config.dart';
 
 final getIt = GetIt.instance;
 
